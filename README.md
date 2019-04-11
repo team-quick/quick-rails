@@ -8,7 +8,6 @@
 
 ## dependencies
  - solargraph
- - slim
 
 ## required tools
 VSCode
