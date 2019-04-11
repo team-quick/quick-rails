@@ -11,7 +11,7 @@
  - sqlite3 1.3.13
  - slim-rails
 
-## required tools
+## tools
 VSCode
  - solargraph
  - gitlens
