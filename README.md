@@ -6,6 +6,10 @@
  - Ruby
  - Ruby on Rails
 
+## dependencies
+ - solargraph
+ - slim
+
 ## required tools
 VSCode
  - solargraph
