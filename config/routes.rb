@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  get 'main/index'
   root 'main#index'
+  get 'main/index'
+
+  get 'gif' => 'gif#index'
 end
