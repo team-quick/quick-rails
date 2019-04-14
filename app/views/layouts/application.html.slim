@@ -10,7 +10,9 @@ html
 
     = csrf_meta_tags
     = csp_meta_tag
-    
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  
     title 
       | QuickRails
   
@@ -42,6 +44,3 @@ html
       footer class="mdl-mini-footer"
         h3 
           | footer
-
-/     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-/     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

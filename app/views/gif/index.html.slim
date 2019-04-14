@@ -1,6 +1,5 @@
-h2 gif generator
-
-
+div class="mdl-grid"
+    h2 gif generator
 
 div class="mdl-grid"
     div class="mdl-cell mdl-cell--6-col"
@@ -17,11 +16,35 @@ div class="mdl-grid"
                 span class="demo-card-image__filename" 
                     | result.jpg
 
-div 
-    button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
+div class="mdl-grid"
+    button id="button-select-image" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
         | select image
-    div choose algorithm(quality)
 
+div class="mdl-grid"
+    table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+        thead
+            tr
+                th Algorithm 
+                th Quality
+                th Time
+        tbody
+            tr
+                td Uniform
+                td Low
+                td Very Short
+        tbody
+            tr
+                td Median Cut
+                td Low
+                td Short
+        tbody
+            tr
+                td K-Means
+                td Middle
+                td Medium
+
+dif class="mdl-grid"
+h3 Result
 div encoding time
 div file size change
 div color table
