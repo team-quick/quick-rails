@@ -1,14 +1,17 @@
 div class="mdl-grid"
     h2 gif generator
 
-img id="preview" alt="" style="width: 90%"
+img id="preview" alt="" style="width: 50%"
 
 div class="mdl-grid"
     label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
         |  select image
         input type="file" id="input-image" name="source_image" style="display: none"
-    button class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+    button id="button-encode" class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
         | encode
+    
+    a id="a-download" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
+        | download
 
 div class="mdl-grid"
     table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
@@ -58,3 +61,7 @@ h3 Result
 div encoding time
 div file size change
 div color table
+
+span lib: 
+a href="https://github.com/Untaek/Easy-GIF-Encoder"
+    | https://github.com/Untaek/Easy-GIF-Encoder
