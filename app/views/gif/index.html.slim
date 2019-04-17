@@ -20,26 +20,28 @@ div class="mdl-grid"
                 th Algorithm 
                 th Quality
                 th Time
+                th Compressibility
         tbody
             tr
                 td Uniform
                 td Low
                 td Very Short
-        tbody
+                td High
             tr
                 td Median Cut
                 td Low
                 td Short
-        tbody
+                td High
             tr
                 td K-Means
                 td Middle
                 td Medium
-        tbody
+                td Middle
             tr
                 td NeuQuant
                 td High
-                td Medium      
+                td Medium
+                td Middle
 
 / div class="mdl-grid"
 /     div class="mdl-cell mdl-cell--6-col"
@@ -57,11 +59,37 @@ div class="mdl-grid"
 /                     | result.jpg
 
 dif class="mdl-grid"
-h3 Result
-div encoding time
-div file size change
-div color table
+  h3 Result
+div class="mdl-grid"
+  table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+      thead
+          tr
+              th  
+              th Before
+              th After
+              th colspan="2" Percentage
+      tbody
+          tr
+              td File size
+              td id="table-td-sourcesize" 
+              td id="table-td-encodedsize" 
+              td colspan="2" id="table-td-percentage" 
+          tr
+              td Elapsed time
+              td id="table-td-time" colspan="4" style="text-align: center"
+          tr
+            td Quantization Algorithm
+            td colspan="4" style="text-align: center" Uniform
+      thead
+          tr
+              th Color Table
+              th Color
+              th RGB
+              th HEX
+              th Amount
+      tbody id="table-tbody-colortable"
 
-span lib: 
-a href="https://github.com/Untaek/Easy-GIF-Encoder"
-    | https://github.com/Untaek/Easy-GIF-Encoder
+div class="mdl-grid"
+  span lib: 
+  a href="https://github.com/Untaek/Easy-GIF-Encoder"
+      | https://github.com/Untaek/Easy-GIF-Encoder
