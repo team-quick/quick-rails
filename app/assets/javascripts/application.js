@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require photoswipe
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function () {
     componentHandler.upgradeDom();
 });

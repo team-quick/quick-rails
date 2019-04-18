@@ -1,0 +1,100 @@
+<%# <script> %>
+function toFitFileSize(byteSize) {
+    if (byteSize >= 1000000) {
+        return `${(byteSize / 1000000).toFixed(2)} MB`
+    }
+    else if (byteSize >= 1000) {
+        return `${(byteSize / 1000).toFixed(2)} KB`
+    }
+
+    return `${byteSize} Bytes`
+}
+
+function RGBtoHEX(r, g, b) {
+    return `#${(0xF000000 + (r << 16) + (g << 8) + (b)).toString(16).slice(1, 8)}`
+}
+
+$(document).on('turbolinks:load', () => {
+    const fileReader = new FileReader()
+    let file
+    const worker = new Worker("<%= javascript_path "worker.js" %>")
+    $('#button-encode').on('click', function () {
+        const c = document.createElement('canvas')
+        const ctx = c.getContext('2d')
+        const algorithm = $('input:radio[name=algorithm]:checked').val()
+        const width = $('#preview')[0].naturalWidth
+        const height = $('#preview')[0].naturalHeight
+        c.width = width
+        c.height = height
+        ctx.drawImage($('#preview').get(0), 0, 0)
+        const imageData = ctx.getImageData(0, 0, width, height).data
+
+        if (!window.Worker) {
+            return
+        }
+        
+        $('#preview-after').removeAttr('src')
+        $('#loading').css('display', 'flex')
+        worker.postMessage([algorithm, width, height, imageData])
+        worker.onmessage = function (e) {
+            const encoded = e.data
+            const encodedblob = new Blob([encoded.data])
+            const elaspsedTime = encoded.elapsedTime
+            const colorTable = encoded.colorTable
+            const encodedurl = window.URL.createObjectURL(encodedblob)
+
+            const sourceFileSize = file.size
+            const encodedFileSize = encoded.data.length
+            const percentage = (encodedFileSize / sourceFileSize * 100).toFixed(1)
+
+            $('#table-td-sourcesize').html(toFitFileSize(sourceFileSize))
+            $('#table-td-encodedsize').html(toFitFileSize(encodedFileSize))
+            $('#table-td-percentage').html(`${percentage} %`)
+            $('#table-td-time').html(`${elaspsedTime / 1000} s`)
+            $('#a-download').prop('href', encodedurl)
+            $('#a-download').prop('download', 'image.gif')
+            
+            $('#loading').css('display', 'none')
+            
+            $('#preview-after').prop('src', encodedurl)
+            $('#table-tbody-colortable').html('')
+            colorTable.forEach(color => {
+                const hex = RGBtoHEX(color.red, color.green, color.blue)
+                $('#table-tbody-colortable').append(
+                    `
+                    <tr>
+                        <td>${color.index + 1}</td>
+                        <td style="background-color:${hex}"></td>
+                        <td>${color.red} ${color.green} ${color.blue}</td>
+                        <td>${hex}</td>
+                        <td>${color.count || 0}</td>
+                    </tr>
+                    `
+                )
+            })
+        }
+    })
+
+    $('#input-image').on('change', function () {
+        $('#table-tbody-colortable').html('')
+        $('#table-td-sourcesize').html('')
+        $('#table-td-encodedsize').html('')
+        $('#table-td-percentage').html('')
+        $('#a-download').removeAttr('href')
+        $('#a-download').removeAttr('download')
+        $('#preview-after').removeAttr('src')
+
+        file = $(this).prop('files')[0]
+        fileReader.readAsArrayBuffer(file)
+        fileReader.onload = function () {
+            console.log(fileReader.result)
+            const blob = new Blob([fileReader.result], { type: "octet/stream" })
+            console.log(window.URL.createObjectURL(blob))
+            const url = window.URL.createObjectURL(blob)
+            $('#preview').prop('src', url)
+            $('#preview').prop('alt', file.name)
+        }
+        console.log(file)
+    })
+})
+<%# </script> %>

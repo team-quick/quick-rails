@@ -1,94 +1,107 @@
-div class="mdl-grid"
+div style="margin-left: 24px"
+  div class="mdl-grid"
     h2 Gif Generator
 
-img id="preview" alt="" style="width: 50%"
+  div class="mdl-grid"
+    div
+      table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-bottom: 16px"
+        thead
+          tr
+            th Algorithm 
+            th Quality
+            th Time
+            th Compressibility
+            th Select
+        tbody
+          tr
+            td Uniform
+            td Low
+            td Very Short
+            td High
+            td 
+              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                input class="mdl-radio__button" type="radio" name="algorithm" value="uniform" checked=true
+          tr
+            td Median Cut
+            td Low
+            td Short
+            td High
+            td
+              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                input class="mdl-radio__button" type="radio" name="algorithm" value="mediancut"
+          tr
+            td K-Means
+            td Middle
+            td Medium
+            td Middle
+            td
+              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                input class="mdl-radio__button" type="radio" name="algorithm"
+          tr
+            td NeuQuant
+            td High
+            td Medium
+            td Middle
+            td
+              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                input class="mdl-radio__button" type="radio" name="algorithm"
 
-div class="mdl-grid"
-    label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+      label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
         |  select image
         input type="file" id="input-image" name="source_image" style="display: none"
-    button id="button-encode" class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+      button id="button-encode" class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
         | encode
-    
-    a id="a-download" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
+      a id="a-download" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
         | download
 
-div class="mdl-grid"
+  div
+    p style="margin: 0; padding: 0; font-size:12px; height: 16px" Images are never uploaded to server.
+    p style="margin: 0; padding: 0; font-size:12px; height: 16px" It may take a time, Depending on your computer's performance. 
+
+  div class="mdl-grid"
+    h3 style="margin-bottom: 0" Result
+
+  div class="mdl-grid"
+    div class="mdl-card mdl-shadow--2dp" style="margin-right: 16px; display: flex; align-items: center; justify-content: center;"
+      a id="preview-link"
+        img id="preview" alt="" style="height: auto; width: 100%"
+
+    div class="mdl-card mdl-shadow--2dp" style="display: flex; align-items: center; justify-content: center;"
+      div id="loading" style="display: none; flex-direction: column; align-items: center; justify-content: center;"
+        div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"
+        h3 style="margin: 0" Please wait..
+      a id="preview-after-link"
+        img id="preview-after" alt="" style="height: auto; width: 100%"
+
+  div class="mdl-grid"
     table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
         thead
             tr
-                th Algorithm 
-                th Quality
-                th Time
-                th Compressibility
+                th  
+                th Before
+                th After
+                th colspan="2" Percentage
         tbody
             tr
-                td Uniform
-                td Low
-                td Very Short
-                td High
+                td File size
+                td id="table-td-sourcesize" 
+                td id="table-td-encodedsize" 
+                td colspan="2" id="table-td-percentage" 
             tr
-                td Median Cut
-                td Low
-                td Short
-                td High
+                td Elapsed time
+                td id="table-td-time" colspan="4" style="text-align: center"
             tr
-                td K-Means
-                td Middle
-                td Medium
-                td Middle
+              td Algorithm
+              td colspan="4" style="text-align: center" Uniform
+        thead
             tr
-                td NeuQuant
-                td High
-                td Medium
-                td Middle
+                th Color Table
+                th Color
+                th RGB
+                th HEX
+                th Amount
+        tbody id="table-tbody-colortable"
 
-/ div class="mdl-grid"
-/     div class="mdl-cell mdl-cell--6-col"
-/         div class="mdl-card mdl-shadow--2dp"
-/             div class="mdl-card__title mdl-card--expand"
-/             div class="mdl-card__actions"
-/                 span class="demo-card-image__filename" 
-/                     | source.jpg
-
-/     div class="mdl-cell mdl-cell--6-col"
-/         div class="mdl-card mdl-shadow--2dp"
-/             div class="mdl-card__title mdl-card--expand"
-/             div class="mdl-card__actions"
-/                 span class="demo-card-image__filename" 
-/                     | result.jpg
-
-dif class="mdl-grid"
-  h3 Result
-div class="mdl-grid"
-  table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-      thead
-          tr
-              th  
-              th Before
-              th After
-              th colspan="2" Percentage
-      tbody
-          tr
-              td File size
-              td id="table-td-sourcesize" 
-              td id="table-td-encodedsize" 
-              td colspan="2" id="table-td-percentage" 
-          tr
-              td Elapsed time
-              td id="table-td-time" colspan="4" style="text-align: center"
-          tr
-            td Quantization Algorithm
-            td colspan="4" style="text-align: center" Uniform
-      thead
-          tr
-              th Color Table
-              th Color
-              th RGB
-              th HEX
-              th Amount
-      tbody id="table-tbody-colortable"
-
-div class="mdl-grid"
-  a href="https://github.com/Untaek/Easy-GIF-Encoder"
-      | https://github.com/Untaek/Easy-GIF-Encoder
+  div class="mdl-grid"
+    a href="https://github.com/Untaek/Easy-GIF-Encoder"
+        | https://github.com/Untaek/Easy-GIF-Encoder
