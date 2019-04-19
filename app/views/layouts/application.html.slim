@@ -18,11 +18,24 @@ html
   
   body
     div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header"
+      dialog id="dialog-opinion" class="mdl-dialog"
+        h4 class="mdl-dialog__title" 
+          | Opinion
+        div class="mdl-dialog__content"
+          p style="text-align:justify"
+            | Send any suggestions to us! Your opinions are used for improving this website. 
+          div style="display: flex"
+            textarea name="" rows="10" style="width: 100%"
+        div class="mdl-dialog__actions"
+          button type="button" class="mdl-button send" Send
+          button type="button" class="mdl-button close" Close
+      
       header class="mdl-layout__header"
         div class="mdl-layout__header-row"
 
           div class="mdl-layout-spacer"
           nav class="mdl-navigation" data-no-turbolink=true
+            label id="menu-opinion" class="mdl-navigation__link" href="" Opinion
             a class="mdl-navigation__link" href="/" Language
         
       div class="mdl-layout__drawer"
@@ -30,7 +43,6 @@ html
         nav class="mdl-navigation"
           a class="mdl-navigation__link" href="gif" Gif generator
           a class="mdl-navigation__link" href="crawl" Web crawler
-          a class="mdl-navigation__link" href="" Request
           a class="mdl-navigation__link" href="" Community
           a class="mdl-navigation__link" href="" Link
 
