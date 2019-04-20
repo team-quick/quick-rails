@@ -1,5 +1,4 @@
 
-
 onmessage = function (e) {
   importScripts('libgif.js')
   console.log('Worker')

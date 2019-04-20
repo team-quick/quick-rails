@@ -12,13 +12,13 @@ html
     = stylesheet_link_tag    'https://code.getmdl.io/1.3.0/material.teal-indigo.min.css'
     = javascript_include_tag 'https://code.getmdl.io/1.3.0/material.min.js', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
+    = action_cable_meta_tag
     title 
       | QuickRails
   
   body
     div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header"
-      dialog id="dialog-opinion" class="mdl-dialog" style="min-width: 600px"
+      dialog id="dialog-opinion" class="mdl-dialog" style="min-width: 600px;"
         h4 class="mdl-dialog__title" 
           | Opinion
         div class="mdl-dialog__content"
@@ -42,6 +42,7 @@ html
         a class="mdl-layout-title mdl-navigation__link" href="/" Quick
         nav class="mdl-navigation"
           a class="mdl-navigation__link" href="gif" Gif generator
+          a class="mdl-navigation__link" href="paint" Group paint
           a class="mdl-navigation__link" href="crawl" Web crawler
           a class="mdl-navigation__link" href="" Community
 

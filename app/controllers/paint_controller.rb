@@ -1,0 +1,2 @@
+class PaintController < ApplicationController
+end

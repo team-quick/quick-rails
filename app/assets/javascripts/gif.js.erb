@@ -1,4 +1,3 @@
-<%# <script> %>
 function toFitFileSize(byteSize) {
     if (byteSize >= 1000000) {
         return `${(byteSize / 1000000).toFixed(2)} MB`
@@ -15,9 +14,9 @@ function RGBtoHEX(r, g, b) {
 }
 
 $(document).on('turbolinks:load', () => {
-    const fileReader = new FileReader()
     let file
-    const worker = new Worker("<%= javascript_path "worker.js" %>")
+    const fileReader = new FileReader()
+    const worker = new Worker("<%= javascript_path "lib/worker.js" %>")
     $('#button-encode').on('click', function () {
         const c = document.createElement('canvas')
         const ctx = c.getContext('2d')
@@ -32,7 +31,7 @@ $(document).on('turbolinks:load', () => {
         if (!window.Worker) {
             return
         }
-        
+
         $('#preview-after').removeAttr('src')
         $('#loading').css('display', 'flex')
         worker.postMessage([algorithm, width, height, imageData])
@@ -53,9 +52,9 @@ $(document).on('turbolinks:load', () => {
             $('#table-td-time').html(`${elaspsedTime / 1000} s`)
             $('#a-download').prop('href', encodedurl)
             $('#a-download').prop('download', 'image.gif')
-            
+
             $('#loading').css('display', 'none')
-            
+
             $('#preview-after').prop('src', encodedurl)
             $('#table-tbody-colortable').html('')
             colorTable.forEach(color => {
@@ -96,15 +95,4 @@ $(document).on('turbolinks:load', () => {
         }
         console.log(file)
     })
-
-    const dial = $('#dialog-opinion')[0]
-    dialogPolyfill.registerDialog(dial)
-
-    $('#menu-opinion').on('click', function() {
-        dial.showModal()
-    })
-
-    $('#dialog-opinion .close')[0].addEventListener('click', function() {
-      dial.close();
-    });
 })
