@@ -15,9 +15,7 @@ class PaintChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("paint_#{params[:room]}", path)
   end
 
-  def pointer(pos)
-  end
+  def pointer(pos); end
 
-  def chat(payload)
-  end
+  def chat(payload); end
 end

@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-gem 'photoswipe-rails', '~> 4.1', '>= 4.1.2'
+# gem 'photoswipe-rails', '~> 4.1', '>= 4.1.2'
 gem 'slim-rails'
 
 # Reduces boot times through caching; required in config/boot.rb

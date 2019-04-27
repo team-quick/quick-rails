@@ -1,6 +1,9 @@
 $(document).on('turbolinks:load', () => {
 
-  const canvas = document.getElementById('canvas-draw')
+  const canvas = $('#canvas-draw')[0]
+
+  if (!canvas)
+    return
 
   /** @type {CanvasRenderingContext2D} */
   const ctx = canvas.getContext('2d')
