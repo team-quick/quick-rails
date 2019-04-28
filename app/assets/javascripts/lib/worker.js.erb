@@ -1,6 +1,6 @@
 
 onmessage = function (e) {
-  importScripts('libgif.js')
+  importScripts('<%= javascript_path "lib/libgif.js" %>')
   console.log('Worker')
   console.log(e)
   const algorithm = e.data[0]
