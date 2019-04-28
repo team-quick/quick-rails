@@ -1,114 +1,114 @@
+div class="container"
+  div class="row"
+    h2 Gif Generator
 
-div class="row"
-  h2 Gif Generator
-
-div class="row"
-  table class="centered striped" style="margin-bottom: 16px"
-    thead
-      tr
-        th Algorithm 
-        th Quality
-        th Time
-        th Compressibility
-        th Select
-    tbody
-      tr
-        td Uniform
-        td Low
-        td Very Short
-        td High
-        td
-          label
-            input type="radio" name="algorithm" value="uniform" checked=true
-            span
-      tr
-        td Median Cut
-        td Low
-        td Short
-        td High
-        td
-          label
-            input type="radio" name="algorithm" value="mediancut"
-            span
-      tr
-        td K-Means
-        td Middle
-        td Medium
-        td Middle
-        td
-          label
-            input type="radio" name="algorithm"
-            span
-      tr
-        td NeuQuant
-        td High
-        td Medium
-        td Middle
-        td
-          label
-            input type="radio" name="algorithm"
-            span
-
-  label class="btn waves-effect waves-light"
-    |  select image
-    input type="file" accept="image/*" id="input-image" name="source_image" style="display: none"
-  button id="button-encode" class="btn waves-effect waves-light"
-    | encode
-  a id="a-download" class="btn waves-effect waves-light" 
-    | download
-
-div class="row"
-  p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
-    | Images are never uploaded to server.
-  p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
-    | It may take a time, Depending on your computer's performance. 
-
-div class="row"
-  h3 style="margin-bottom: 0" 
-    | Result
-
-div class="row"
-  div.col style="min-height: 15em; width: 16em"
-    img id="preview" class="materialboxed" alt="" style="height: auto; width: 100%"
-  div.col style="min-height: 15em; width: 16em"
-    div#loading style="display:none;"
-      div class="preloader-wrapper active"
-        div class="spinner-layer"
-          div class="circle-clipper left"
-            div class="circle"
-      h3 style="margin: 0" 
-        | Please wait..
-    img id="preview-after" class="materialboxed" alt="" style="height: auto; width: 100%"
-
-div class="row"
-  table class="centered highlight"
+  div class="row"
+    table class="centered striped" style="margin-bottom: 16px"
       thead
-          tr
-              th  
-              th Before
-              th After
-              th colspan="2" Percentage
+        tr
+          th Algorithm 
+          th Quality
+          th Time
+          th Compressibility
+          th Select
       tbody
-          tr
-              td File size
-              td id="table-td-sourcesize" 
-              td id="table-td-encodedsize" 
-              td colspan="2" id="table-td-percentage" 
-          tr
-              td Elapsed time
-              td id="table-td-time" colspan="4" style="text-align: center"
-          tr
-            td Algorithm
-            td colspan="4" style="text-align: center" Uniform
-      thead
-          tr
-              th Color Table
-              th Color
-              th RGB
-              th HEX
-              th Amount
-      tbody id="table-tbody-colortable"
+        tr
+          td Uniform
+          td Low
+          td Very Short
+          td High
+          td
+            label
+              input type="radio" name="algorithm" value="uniform" checked=true
+              span
+        tr
+          td Median Cut
+          td Low
+          td Short
+          td High
+          td
+            label
+              input type="radio" name="algorithm" value="mediancut"
+              span
+        tr
+          td K-Means
+          td Middle
+          td Medium
+          td Middle
+          td
+            label
+              input type="radio" name="algorithm"
+              span
+        tr
+          td NeuQuant
+          td High
+          td Medium
+          td Middle
+          td
+            label
+              input type="radio" name="algorithm"
+              span
 
-div class="row"
-  a href="https://github.com/Untaek/Easy-GIF-Encoder"
-      | https://github.com/Untaek/Easy-GIF-Encoder
+    label class="btn waves-effect waves-light"
+      |  select image
+      input type="file" accept="image/*" id="input-image" name="source_image" style="display: none"
+    button id="button-encode" class="btn waves-effect waves-light"
+      | encode
+    a id="a-download" class="btn waves-effect waves-light" 
+      | download
+
+  div class="row"
+    p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
+      | Images are never uploaded to server.
+    p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
+      | It may take a time, Depending on your computer's performance. 
+
+  div class="row"
+    h3 style="margin-bottom: 0" 
+      | Result
+
+  div class="row"
+    div.col style="min-height: 15em; width: 16em"
+      img id="preview" class="materialboxed" alt="" style="height: auto; width: 100%"
+    div.col style="min-height: 15em; width: 16em"
+      div#loading style="display:none;"
+        div class="preloader-wrapper active"
+          div class="spinner-layer"
+            div class="circle-clipper left"
+              div class="circle"
+        h3 style="margin: 0" 
+          | Please wait..
+      img id="preview-after" class="materialboxed" alt="" style="height: auto; width: 100%"
+
+  div class="row"
+    table class="centered highlight"
+        thead
+            tr
+                th  
+                th Before
+                th After
+                th colspan="2" Percentage
+        tbody
+            tr
+                td File size
+                td id="table-td-sourcesize" 
+                td id="table-td-encodedsize" 
+                td colspan="2" id="table-td-percentage" 
+            tr
+                td Elapsed time
+                td id="table-td-time" colspan="4" style="text-align: center"
+            tr
+              td Algorithm
+              td colspan="4" style="text-align: center" Uniform
+        thead
+            tr
+                th Color Table
+                th Color
+                th RGB
+                th HEX
+                th Amount
+        tbody id="table-tbody-colortable"
+
+  div class="row"
+    a href="https://github.com/Untaek/Easy-GIF-Encoder"
+        | https://github.com/Untaek/Easy-GIF-Encoder
