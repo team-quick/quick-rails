@@ -1,84 +1,87 @@
-div style="margin-left: 24px"
-  div class="mdl-grid"
+div class="container"
+  div class="row"
     h2 Gif Generator
 
-  div class="mdl-grid"
-    div
-      table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-bottom: 16px"
-        thead
-          tr
-            th Algorithm 
-            th Quality
-            th Time
-            th Compressibility
-            th Select
-        tbody
-          tr
-            td Uniform
-            td Low
-            td Very Short
-            td High
-            td 
-              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-                input class="mdl-radio__button" type="radio" name="algorithm" value="uniform" checked=true
-          tr
-            td Median Cut
-            td Low
-            td Short
-            td High
-            td
-              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-                input class="mdl-radio__button" type="radio" name="algorithm" value="mediancut"
-          tr
-            td K-Means
-            td Middle
-            td Medium
-            td Middle
-            td
-              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-                input class="mdl-radio__button" type="radio" name="algorithm"
-          tr
-            td NeuQuant
-            td High
-            td Medium
-            td Middle
-            td
-              label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-                input class="mdl-radio__button" type="radio" name="algorithm"
+  div class="row"
+    table class="centered striped" style="margin-bottom: 16px"
+      thead
+        tr
+          th Algorithm 
+          th Quality
+          th Time
+          th Compressibility
+          th Select
+      tbody
+        tr
+          td Uniform
+          td Low
+          td Very Short
+          td High
+          td
+            label
+              input type="radio" name="algorithm" value="uniform" checked=true
+              span
+        tr
+          td Median Cut
+          td Low
+          td Short
+          td High
+          td
+            label
+              input type="radio" name="algorithm" value="mediancut"
+              span
+        tr
+          td K-Means
+          td Middle
+          td Medium
+          td Middle
+          td
+            label
+              input type="radio" name="algorithm"
+              span
+        tr
+          td NeuQuant
+          td High
+          td Medium
+          td Middle
+          td
+            label
+              input type="radio" name="algorithm"
+              span
 
-      label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-        |  select image
-        input type="file" accept="image/*" id="input-image" name="source_image" style="display: none"
-      button id="button-encode" class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-        | encode
-      a id="a-download" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
-        | download
+    label class="btn waves-effect waves-light"
+      |  select image
+      input type="file" accept="image/*" id="input-image" name="source_image" style="display: none"
+    button id="button-encode" class="btn waves-effect waves-light"
+      | encode
+    a id="a-download" class="btn waves-effect waves-light" 
+      | download
 
-  div
-    p style="margin: 0; padding: 0; font-size:12px; height: 16px" 
+  div class="row"
+    p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
       | Images are never uploaded to server.
-    p style="margin: 0; padding: 0; font-size:12px; height: 16px" 
+    p style="margin: 0; padding: 0; font-size:13px; height: 16px" 
       | It may take a time, Depending on your computer's performance. 
 
-  div class="mdl-grid"
+  div class="row"
     h3 style="margin-bottom: 0" 
       | Result
 
-  div class="mdl-grid"
-    div class="mdl-card mdl-shadow--2dp" style="margin-right: 16px; display: flex; align-items: center; justify-content: center;"
-      a id="preview-link"
-        img id="preview" alt="" style="height: auto; width: 100%"
-
-    div class="mdl-card mdl-shadow--2dp" style="display: flex; align-items: center; justify-content: center;"
-      div id="loading" style="display: none; flex-direction: column; align-items: center; justify-content: center;"
-        div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"
+  div class="row"
+    div.col style="min-height: 15em; width: 16em"
+      img id="preview" class="materialboxed" alt="" style="height: auto; width: 100%"
+    div.col style="min-height: 15em; width: 16em"
+      div#loading style="display:none;"
+        div class="preloader-wrapper active"
+          div class="spinner-layer"
+            div class="circle-clipper left"
+              div class="circle"
         h3 style="margin: 0" 
           | Please wait..
-      a id="preview-after-link"
-        img id="preview-after" alt="" style="height: auto; width: 100%"
+      img id="preview-after" class="materialboxed" alt="" style="height: auto; width: 100%"
 
-  div class="mdl-grid"
-    table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+  div class="row"
+    table class="centered highlight"
         thead
             tr
                 th  
@@ -106,6 +109,6 @@ div style="margin-left: 24px"
                 th Amount
         tbody id="table-tbody-colortable"
 
-  div class="mdl-grid"
+  div class="row"
     a href="https://github.com/Untaek/Easy-GIF-Encoder"
         | https://github.com/Untaek/Easy-GIF-Encoder
