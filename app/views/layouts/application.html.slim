@@ -18,15 +18,19 @@ html
   
   body
     nav
-      div class="nav-wrapper"
-        a href="/" class="brand-logo" Logo
-        ul class="right hide-on-med-and-down"
+      div.nav-wrapper
+        a#toggle-sidenav style="margin-left: 12px; display: inline"
+          i.material-icons style="font-size: 2em; display: inline-block" menu
+        a.brand-logo href="/" Quick
+        ul.right
           li
             a class="modal-trigger" href="#modal-opinion" Opinion
           li 
             a Language
 
     ul id="slide-out" class="sidenav sidenav-fixed"
+      div 
+        h3.center-align style="margin: 0" QUICK
       li 
         a.collection-item href="/gif" Gif generator
       li 

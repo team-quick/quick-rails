@@ -7,8 +7,8 @@ class PaintChannel < ApplicationCable::Channel
 
   def unsubscribed; end
 
-  def hello(data)
-    ActionCable.server.broadcast("paint_#{params[:room]}", data['message'])
+  def chat(message)
+    ActionCable.server.broadcast("paint_#{params[:room]}", message)
   end
 
   def draw(path)
@@ -16,6 +16,4 @@ class PaintChannel < ApplicationCable::Channel
   end
 
   def pointer(pos); end
-
-  def chat(payload); end
 end

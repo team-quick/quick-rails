@@ -5,15 +5,23 @@ $(document).on('turbolinks:load', () => {
   if (!canvas)
     return
 
+  canvas.width = $('#canvas-wrapper').width()
+
+  $(window).resize(function () {
+    canvas.width = $('#canvas-wrapper').width()
+  })
+
   /** @type {CanvasRenderingContext2D} */
   const ctx = canvas.getContext('2d')
+
+  const $chatList = $('#div-chat-list')
 
   App.room = App.cable.subscriptions.create({
     channel: "PaintChannel",
     room: "room1"
   }, {
-      hello: (message) =>
-        App.room.perform('hello', { message: message }),
+      chat: (message) =>
+        App.room.perform('chat', { message }),
 
       draw: (path) =>
         App.room.perform('draw', { path }),
@@ -29,6 +37,15 @@ $(document).on('turbolinks:load', () => {
             ctx.strokeStyle = 'black'
             ctx.stroke()
           }; break
+          case 'chat': {
+            const msg = data.message
+            $chatList.append(`
+              <div>
+                asd: ${msg}  
+              </div>`
+            )
+            $chatList.scrollTop($chatList[0].scrollHeight)
+          }; break
         }
       }
     })
@@ -43,7 +60,7 @@ $(document).on('turbolinks:load', () => {
   // (e.movementX !== 0 || e.movementY !== 0)
   canvas.addEventListener('mousemove', function (e) {
     if (mouseLeftDown === true && (prevX !== e.offsetX || prevY !== e.offsetY)) {
-      console.log(e.offsetX, e.offsetY)
+      // console.log(e.offsetX, e.offsetY)
       App.room.draw({
         x0: prevX,
         y0: prevY,
@@ -84,5 +101,15 @@ $(document).on('turbolinks:load', () => {
   canvas.addEventListener('mouseout', function (e) {
     console.log(e)
     mouseLeftDown = false
+  })
+
+  $('#input-chat').on('keydown', function (e) {
+    if (e.keyCode === 13) {
+      const message = $(this).val().trim()
+      if (message.length) {
+        App.room.chat(message)
+        $(this).val('')
+      }
+    }
   })
 })

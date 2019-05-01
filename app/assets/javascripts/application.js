@@ -15,3 +15,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', () => {
+  let sidenav = true
+  $('#toggle-sidenav').on('click', function () {
+    if (sidenav) {
+      $('#slide-out').css('transform', 'translateX(-100%)')
+    }
+    else {
+      $('#slide-out').css('transform', 'translateX(0px)')
+    }
+    sidenav = !sidenav
+  })
+})
