@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'slim-rails'
 
+gem 'redis', '~> 4.0'
+gem 'redis-namespace'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

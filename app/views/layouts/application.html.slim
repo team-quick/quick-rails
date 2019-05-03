@@ -29,12 +29,13 @@ html
             a Language
 
     ul id="slide-out" class="sidenav sidenav-fixed"
-      div 
-        h3.center-align style="margin: 0" QUICK
+      h3#sidenav-title.center-align style="margin: 0; padding: 1em" QUICK
       li 
         a.collection-item href="/gif" Gif generator
       li 
         a.collection-item href="/paint" Group paint
+      li
+        a.collection-item href="/thread" Thread 
 
     main
       == yield

@@ -20,21 +20,28 @@ $(document).on('turbolinks:load', () => {
     channel: "PaintChannel",
     room: "room1"
   }, {
+      connected: () => App.room.load(),
+
       chat: (message) =>
         App.room.perform('chat', { message }),
 
       draw: (path) =>
         App.room.perform('draw', { path }),
 
+      track: (point) =>
+        App.room.perform('track', { point }),
+
+      load: () => App.room.perform('load'),
+
       received: (data) => {
         console.log(data)
         switch (data.action) {
           case 'draw': {
             const path = data.path
+            ctx.beginPath()
             ctx.moveTo(path.x0, path.y0)
             ctx.lineTo(path.x1, path.y1)
-            ctx.lineWidth = 5
-            ctx.strokeStyle = 'black'
+            ctx.closePath()
             ctx.stroke()
           }; break
           case 'chat': {
@@ -46,11 +53,25 @@ $(document).on('turbolinks:load', () => {
             )
             $chatList.scrollTop($chatList[0].scrollHeight)
           }; break
+          case 'track': {
+            const point = data.point
+          }; break;
+          case 'load': {
+            const pathes = data.pathes
+              .map(path => JSON.parse(path))
+            console.log(pathes)
+
+            pathes.forEach(path => {
+              ctx.beginPath()
+              ctx.moveTo(path.x0, path.y0)
+              ctx.lineTo(path.x1, path.y1)
+              ctx.closePath()
+              ctx.stroke()
+            })
+          }
         }
       }
     })
-
-
 
   let mouseLeftDown = false
   let prevX = -1
@@ -59,35 +80,43 @@ $(document).on('turbolinks:load', () => {
   // (prevX !== e.offsetX || prevY !== e.offsetY)
   // (e.movementX !== 0 || e.movementY !== 0)
   canvas.addEventListener('mousemove', function (e) {
+    App.room.track({
+      x: e.offsetX,
+      y: e.offsetY
+    })
+
     if (mouseLeftDown === true && (prevX !== e.offsetX || prevY !== e.offsetY)) {
-      // console.log(e.offsetX, e.offsetY)
+      console.log(e.offsetX, e.offsetY)
       App.room.draw({
         x0: prevX,
         y0: prevY,
         x1: e.offsetX,
         y1: e.offsetY
       })
+      ctx.beginPath()
       ctx.moveTo(prevX, prevY)
       ctx.lineTo(e.offsetX, e.offsetY)
-      ctx.lineWidth = 5
-      ctx.strokeStyle = 'black'
+      ctx.closePath()
       ctx.stroke()
 
       prevX = e.offsetX
       prevY = e.offsetY
     }
   })
-
+  ctx.shadowBlur = 1
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  ctx.lineWidth = 3
+  ctx.strokeStyle = 'black'
+  ctx.shadowColor = "rgba(0,0,0,.3)";
   canvas.addEventListener('mousedown', function (e) {
     console.log(e)
     mouseLeftDown = true
     prevX = e.offsetX
     prevY = e.offsetY
-    // ctx.beginPath()
-    ctx.moveTo(prevX - 1, prevY - 1)
-    ctx.lineTo(e.offsetX + 1, e.offsetY + 1)
-    ctx.lineWidth = 5
-    ctx.strokeStyle = 'black'
+
+    ctx.moveTo(prevX - 1, prevY)
+    ctx.lineTo(e.offsetX + 1, e.offsetY)
     ctx.stroke()
   })
 
@@ -95,7 +124,7 @@ $(document).on('turbolinks:load', () => {
     console.log(e)
     mouseLeftDown = false
 
-    // ctx.closePath()
+
   })
 
   canvas.addEventListener('mouseout', function (e) {
