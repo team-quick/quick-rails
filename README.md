@@ -1,15 +1,19 @@
 # Quick-rails
 
 가자고 어서  
-고 루비고
+고 루비고  
 
-## required develop environment
+https://quickrails.herokuapp.com/
+
+## deploy environment
  - Ruby 2.5.3
  - Ruby on Rails 5.2.3
+ - Postgresql
+ - Redis 
 
 ## dependencies
  - solargraph
- - sqlite3 1.3.13
+ - sqlite3 1.3.13 (development)
  - slim-rails
 
 ## tools
