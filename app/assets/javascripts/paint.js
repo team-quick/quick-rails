@@ -7,20 +7,20 @@ $(document).on('turbolinks:load', () => {
 
   canvas.width = $('#canvas-wrapper').width()
 
-  $(window).resize(function () {
-    canvas.width = $('#canvas-wrapper').width()
-  })
-
   /** @type {CanvasRenderingContext2D} */
   const ctx = canvas.getContext('2d')
 
   const $chatList = $('#div-chat-list')
 
+  let pathes = []
+
   App.room = App.cable.subscriptions.create({
     channel: "PaintChannel",
     room: "room1"
   }, {
-      connected: () => App.room.load(),
+      connected: () => {
+        App.room.load()
+      },
 
       chat: (message) =>
         App.room.perform('chat', { message }),
@@ -36,8 +36,15 @@ $(document).on('turbolinks:load', () => {
       received: (data) => {
         console.log(data)
         switch (data.action) {
+          case 'join': {
+
+          }; break
+          case 'leave': {
+
+          }; break
           case 'draw': {
             const path = data.path
+            pathes.push(path)
             ctx.beginPath()
             ctx.moveTo(path.x0, path.y0)
             ctx.lineTo(path.x1, path.y1)
@@ -48,7 +55,8 @@ $(document).on('turbolinks:load', () => {
             const msg = data.message
             $chatList.append(`
               <div>
-                asd: ${msg}  
+                <img class="circle responsive-img" width="18" height="18" src="https://materializecss.com/images/yuna.jpg"/>
+                <span>user1: ${msg}</span> 
               </div>`
             )
             $chatList.scrollTop($chatList[0].scrollHeight)
@@ -57,17 +65,28 @@ $(document).on('turbolinks:load', () => {
             const point = data.point
           }; break;
           case 'load': {
-            const pathes = data.pathes
+            pathes = data.pathes
               .map(path => JSON.parse(path))
             console.log(pathes)
 
             pathes.forEach(path => {
               ctx.beginPath()
+              ctx.lineWidth = 3
               ctx.moveTo(path.x0, path.y0)
               ctx.lineTo(path.x1, path.y1)
               ctx.closePath()
               ctx.stroke()
             })
+
+            data.chat.forEach(chat => {
+              $chatList.append(`
+                <div>
+                  <img class="circle responsive-img" width="18" height="18" src="https://materializecss.com/images/yuna.jpg"/>
+                  <span>user1: ${chat}</span> 
+                </div>`
+              )
+            })
+
           }
         }
       }
@@ -77,8 +96,18 @@ $(document).on('turbolinks:load', () => {
   let prevX = -1
   let prevY = -1
 
-  // (prevX !== e.offsetX || prevY !== e.offsetY)
-  // (e.movementX !== 0 || e.movementY !== 0)
+  window.addEventListener('resize', function () {
+    canvas.width = $('#canvas-wrapper').width()
+    pathes.forEach(path => {
+      ctx.beginPath()
+      ctx.lineWidth = 3
+      ctx.moveTo(path.x0, path.y0)
+      ctx.lineTo(path.x1, path.y1)
+      ctx.closePath()
+      ctx.stroke()
+    })
+  })
+
   canvas.addEventListener('mousemove', function (e) {
     App.room.track({
       x: e.offsetX,
@@ -123,8 +152,6 @@ $(document).on('turbolinks:load', () => {
   canvas.addEventListener('mouseup', function (e) {
     console.log(e)
     mouseLeftDown = false
-
-
   })
 
   canvas.addEventListener('mouseout', function (e) {

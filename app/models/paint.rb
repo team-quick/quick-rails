@@ -10,12 +10,20 @@ class Paint
       redis.rpush(session, path)
     end
 
-    def load(session)
+    def loadPathes(session)
       redis.lrange(session, 0, -1)
     end
 
     def toFile(session)
       redis.ltrim(session, 0, -1)
+    end
+
+    def chat(session, message)
+      redis.rpush(session + '#chat', message)
+    end
+
+    def loadChat(session)
+      redis.lrange(session + '#chat', 0, -1)
     end
   end
 end

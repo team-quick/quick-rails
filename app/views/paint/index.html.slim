@@ -1,7 +1,7 @@
 div
   h2 Group paint
 
-div class="row"
+div.row style="margin-bottom: 0"
   div.col.s9#canvas-wrapper
     canvas#canvas-draw width="500" height="500" style="border: 1px solid #000000"
   div.col.s3 
@@ -14,19 +14,14 @@ div class="row"
       div
         input#input-chat type="text" name="" placeholder="message"
 
-div class="row"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-  img.circle.responsive-img.hoverable width="46" src="https://materializecss.com/images/yuna.jpg"
-
+div.row style="display: flex; justify-content: flex-end;"
+  div#div-participants style="display: flex; justify-content: space-between; padding: 0.5em; height: 4.5em"
+    img.circle.responsive-img.hoverable style="margin: 0.3em" width="46" src="https://materializecss.com/images/yuna.jpg"
+    img.circle.responsive-img.hoverable style="margin: 0.3em" width="46" src="https://materializecss.com/images/yuna.jpg"
+    img.circle.responsive-img.hoverable style="margin: 0.3em" width="46" src="https://materializecss.com/images/yuna.jpg"
+    img.circle.responsive-img.hoverable style="margin: 0.3em" width="46" src="https://materializecss.com/images/yuna.jpg"
+    img.circle.responsive-img.hoverable style="margin: 0.3em" width="46" src="https://materializecss.com/images/yuna.jpg"
+    span +10
 div
   h2 Active sessions
 
