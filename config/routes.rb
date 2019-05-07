@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get 'gif' => 'gif#index'
   get 'paint' => 'paint#index'
+  post 'paint' => 'paint#create'
+  get 'paint/new' => 'paint#new'
 end

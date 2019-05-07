@@ -1,0 +1,32 @@
+div
+  h2 Create new session
+
+.container
+  = form_for @session, url: {action: "new"} do |f|
+    / = hidden_field_tag :authenticity_token
+    div.input-field
+      = f.text_field :title
+      / input#title type="text" name="title"
+      label for="title" Title
+    p
+      label
+        input.filled-in type="checkbox" name="private"
+        span Private (Invite only) *Login required
+    p
+      label
+        input.filled-in type="checkbox" name="save_history"
+        span Save history *Login required
+    p
+      label
+        input.filled-in type="checkbox" name="authorize_drawing"
+        span Authorize drawing to others *Login required
+    p
+      label
+        input.filled-in type="checkbox"
+        span Participants limitation
+      input style="width:2em; height: 1.5rem; margin-left:0.5em; margin-right:0.2em" type="text" name="participants_limitation"
+      span &#47; 100
+    
+    input.btn type="submit"
+
+    p

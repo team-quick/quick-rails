@@ -1,0 +1,2 @@
+class PaintSession < ApplicationRecord
+end
